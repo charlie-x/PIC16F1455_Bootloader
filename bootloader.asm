@@ -18,7 +18,7 @@
 ; the download file must incorporate a valid CRC-14 for the bootloader to consider it valid
 ;
 ; Bootloader is entered if:
-; - the MCLR/RA3 pin is grounded at power-up or reset,
+; - the RA4 pin is grounded at power-up or reset,
 ; (The internal pull-up is used; no external resistor is necessary.)
 ; - there is no valid application programmed,
 ; - the watchdog timed out
@@ -623,7 +623,7 @@ _wosc	movlw	(1<<PLLRDY)|(1<<HFIOFR)|(1<<HFIOFS)
 ; enable pull-up on RA4   
 	bsf	    WPUA,4
    
-; calc CRC of application (and provide enough delay for the pull-up on RA3/MCLR to work)
+; calc CRC of application (and provide enough delay for the pull-up on RA4 to work)
 	banksel	PMADRL
 	movlw	low APP_ENTRY_POINT	; set start address of read to beginning of app
 	movwf	PMADRL
